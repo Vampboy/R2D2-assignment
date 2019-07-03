@@ -30,4 +30,4 @@ def search_titles(request):
 
 def result(request,num=0):
     data = imdb.objects.get(id=num)
-    return render(request,'search_result',{'data':data})
+    return render(request,'search_result.html',{'data':data})
