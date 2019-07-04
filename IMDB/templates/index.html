@@ -1,35 +1,36 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="static/css/main.css" />
+    {% block head %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IMDB</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
 </head>
+{% endblock %}
 
 <body>
-    {% csrf_token %}
     <div class="container">
         <div class="heading">
             <h1>IMDB Search</h1>
         </div>
         <div class="search-bar-container">
             <div class="search-bar">
+                    {% csrf_token %}
                 <input class="input-box" type="text" name="search" id="search" placeholder="Enter a Movie Name" />
             </div>
         </div>
         <div class="search-results ">
             <ul  id='search-results'>
-                {% block content %}
-
-                {% endblock %}
             </ul>
         </div>
+        {% include "search_result.html" %}
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="static/js/ajax_script.js"></script>
+<script src="/static/js/ajax_script.js"></script>
 
 </html>

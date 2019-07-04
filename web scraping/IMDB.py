@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 import psycopg2
-from psycopg2 import Error
 
 connection = psycopg2.connect(user = "postgres",
                                 password = "light",
@@ -21,9 +20,6 @@ cursor.execute(create_tb)
 connection.commit()
 print("Table created successfully in PostgreSQL ")
 
-movieName = []
-imdbRating = []
-starCast = []
 count=1
 for page_idx in range(1,1100,50):
     response = requests.get("https://www.imdb.com/search/title/?title=a&start="+str(page_idx)+"&ref_=adv_nxt")
@@ -42,11 +38,6 @@ for page_idx in range(1,1100,50):
         else:
                 rating=rating.text
         cast=str(";".join(cast[1:]))
-
-
-        movieName.append(movie)
-        imdbRating.append(rating)
-        starCast.append(cast)
 
         insert_tb = ''' INSERT INTO IMDB 
                                  VALUES (%s,%s,%s,%s) '''
