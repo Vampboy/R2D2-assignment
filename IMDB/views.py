@@ -6,26 +6,13 @@ from .models import imdb
 def index(request):
     return render(request,'index.html',{})
 
-
-#from django.utils import simplejson
-#def autocompleteModel(request):
-#    search_qs = ModelName.objects.filter(name__startswith=request.REQUEST['search'])
-#    results = []
-#    for r in search_qs:
-#        results.append(r.name)
-#    resp = request.REQUEST['callback'] + '(' + simplejson.dumps(result) + ');'
-#    return HttpResponse(resp, content_type='application/json')
-
 def search_titles(request):
     if request.method == 'POST':
         search_text = request.POST['search_text']
     else:
         search_text = ''
-    #print(imdb.objects.all())
-    data = imdb.objects.order_by('raing').filter(moviename__icontains=str(search_text))[:5]
-    print(data)
 
-    articles = data
+    articles = imdb.objects.order_by('raing').filter(moviename__icontains=str(search_text))[:5]
     return render_to_response('ajax_search.html',{'articles':articles})
 
 def result(request,num=0):
