@@ -1,7 +1,26 @@
+{% extends 'index.html' %}
 
-{% if data %}
-<p>Movie Id : {{ data.id }}</p>
-<p>Movie name : {{ data.moviename }}</p>
-<p>Movie Rating : {{ data.raing }}</p>
-<p>Star Cast : {{ data.star_cast }}</p>
-{% endif %}
+{% block head %}
+<title>Results</title>
+{% endblock %}
+
+{% block title %}
+<h1>Search result</h1>
+{% endblock %}
+
+{% block body %}
+<div class="search-result-container">
+    <div class="result-text">
+        <p> 
+            <b> Id :</b> {{ data.id }}<br>
+            <b> name :</b> {{ data.moviename }}<br>
+            <b> Rating :</b> {{ data.raing }}<br>
+            <b>Star Cast :</b> {{ data.star_cast }}
+        </p>
+    </div>
+</div>
+<div class="button-container">
+    <a style="text-decoration: none" href="{% url 'index' %}">
+        <input type="submit" class="button" value="Go back"></input>
+    </a></div>
+{% endblock %}

@@ -2,32 +2,36 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% block head %}
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>IMDB</title>
+    {% endblock %}
     <link rel="stylesheet" href="/static/css/main.css" />
 </head>
-{% endblock %}
 
 <body>
     <div class="container">
         <div class="heading">
+            {% block title %}
             <h1>IMDB Search</h1>
+            {% endblock %}
         </div>
+        {% block body %}
         <div class="search-bar-container">
             <div class="search-bar">
-                    {% csrf_token %}
+                {% csrf_token %}
                 <input class="input-box" type="text" name="search" id="search" placeholder="Enter a Movie Name" />
             </div>
         </div>
         <div class="search-results ">
-            <ul  id='search-results'>
+            <ul id='search-results'>
             </ul>
         </div>
-        {% include "search_result.html" %}
+        {% endblock %}
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
